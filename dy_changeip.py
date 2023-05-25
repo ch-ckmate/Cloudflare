@@ -7,6 +7,6 @@ dw = requests.get("https://api.cloudflare.com/client/v4/zones/{zoneid}/dns_recor
 for dns in json.loads(dw)['result']:
     if dnsname in dns['name']:
         if dns['content']!=myip:
-            requests.put("https://api.cloudflare.com/client/v4/zones/{zoneid}/dns_records",headers={"Authorization": "Bearer token", "Content-Type": "application/json"}
+            requests.put("https://api.cloudflare.com/client/v4/zones/{zoneid}/dns_records/"+dns['id'],headers={"Authorization": "Bearer token", "Content-Type": "application/json"}
                          ,json={"type":"A","name":dnsname,"content":myip})
 
